@@ -1,45 +1,67 @@
-# Amazon Sales Analytics Dashboard
+# Amazon Sales Analysis
 
-## 📌 Project Overview
-This project provides a comprehensive data analytics solution designed to analyze and monitor Amazon e-commerce sales performance. By leveraging **Power Query** for robust data ETL processes and **Excel** for dynamic data modeling, this interactive dashboard transforms raw sales data into actionable business insights. 
+An Excel sales-analysis project with Power Query preparation, a calendar-based data model and reporting assets.
 
-The primary objective is to track key performance indicators (KPIs), analyze seasonal sales trends, identify top-performing product categories, and audit operational delivery fulfillment.
+[Download the Excel workbook](dashboard/repo%20Final.xlsx) · [Explore source files](data/)
 
----
+## Problem Statement
 
-## 🛠️ Tools & Technologies Used
-* **Microsoft Excel:** Main platform for data modeling and interactive dashboard design.
-* **Power Query:** Used for data extraction, cleanup, and structural transformations (ETL).
-* **Pivot Tables & Pivot Charts:** For multi-dimensional data aggregation and visualization.
-* **Advanced Formulas:** For custom business metric calculations.
+Sales teams need to understand order activity by time, product and fulfillment status. This project organizes sales records into an Excel workflow for exploring those questions and reviewing the data preparation behind the analysis.
 
----
+## Methodology
 
-## 📊 Dashboard Key Features & Architecture
-The dashboard integrates several tailored components to provide an executive overview of the business performance:
+1. **Inspect source files:** review the sales, pricing and supporting CSV files under `data/` before combining them. Not every file has the same grain.
+2. **Prepare with Power Query:** the existing screenshot documents header promotion, type conversion, locale-aware date conversion, filtering, value replacement and column removal.
+3. **Model time:** the model screenshot shows a sales table linked to a Calendar table through a one-to-many date relationship.
+4. **Explore the workbook:** inspect the Data Sales, Report and Visulization worksheets in Excel.
+5. **Validate measures:** distinguish order counts, line quantities and monetary amounts, and document the treatment of cancelled orders.
 
-### 1. Core Executive KPIs
-Monitors high-level operational metrics critical for business health, including:
-* **Total Revenue:** Tracking over $75M in sales.
-* **Total Orders & Units Sold:** Monitoring order volumes and quantity distributions.
-* **Average Order Value (AOV):** Measuring the average financial spend per order.
-* **Cancellation Analysis:** Auditing the exact percentage of cancelled orders to track revenue loss.
+## Workflow Screenshots
 
-### 2. Time-Series & Trend Analysis
-* **Monthly Sales Performance:** Slicing revenue and quantity trends across specific timelines (e.g., March, April, May, June).
-* **Seasonality Tracking:** Evaluating performance peaks to optimize inventory management.
+### Power Query preparation
 
-### 3. Product & Regional Insights
-* **Top Categories & Styles:** Breaking down the highest revenue-generating product segments and styles.
-* **Geographical Distribution:** Visualizing sales volume based on top-performing cities.
+![Existing Power Query applied steps](src/Transform.jpg)
 
-### 4. Supply Chain & Fulfillment Auditing
-* **Delivery Status Breakdown:** Dynamic visual tracking comparing successful shipments against pending orders, delayed packages, and cancellations.
+### Calendar relationship
 
----
+![Existing sales-to-calendar data model](src/Data%20model.jpg)
 
-## 🔍 Data ETL Pipeline (Power Query)
-Before constructing the visual dashboard, the raw e-commerce dataset underwent a strict data cleanup pipeline:
-* **Data Cleansing:** Handled missing records, fixed inconsistent values, and eliminated corrupted entries.
-* **Data Type Standardization:** Converted text fields, dates, and financial metrics into proper formats to enable seamless mathematical aggregation.
-* **Structural Transformations:** Applied custom sorting and structural layouts to prepare the tables for advanced Pivot modeling.
+These are the repository's existing preparation and model screenshots, not a fabricated dashboard preview. A verified finished-dashboard screenshot is not available in the repository.
+
+## Insights
+
+- Order status and fulfillment method are separate fields, so shipment performance and sales activity should not be treated as the same metric.
+- A dedicated Calendar table supports consistent month and year slicing.
+- The supplied files cover different subjects, including product pricing. Adding every numeric column or appending every file would not produce a meaningful revenue total.
+
+The previous README's dollar-denominated revenue claim is not repeated here: a verified currency definition and reproducible total are needed first.
+
+## Business Recommendations
+
+- Investigate cancellations by category and fulfillment method before proposing operational changes.
+- Compare sales trends only across consistent date ranges and status definitions.
+- Check product-level sales and stock context together before recommending replenishment.
+- Confirm the currency and business meaning of Amount before publishing financial KPIs.
+
+These are proposed analysis directions, not claims of measured business gains.
+
+## How to Explore
+
+1. Download `dashboard/repo Final.xlsx` and open it in desktop Excel with Power Query and Data Model support.
+2. Review the workbook's existing sheets before refreshing.
+3. Inspect query source paths and point them to the intended local CSV files where needed.
+4. Refresh only after verifying the file mappings, data types and currency assumptions.
+
+## Repository Guide
+
+| Path | Contents |
+| --- | --- |
+| `dashboard/repo Final.xlsx` | Excel analysis workbook |
+| `data/` | Sales, pricing and supporting CSV files |
+| `src/Transform.jpg` | Power Query screenshot |
+| `src/Data model.jpg` | Calendar relationship screenshot |
+| `src/Data.jpg` | Existing sales-table screenshot |
+
+## Limitations
+
+This is a historical portfolio analysis, not a live connection to Amazon. Source-file mappings and refresh portability need review on a new machine. This documentation pass does not assert a new revenue total, a dashboard refresh or tested financial results.
